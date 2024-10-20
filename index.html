@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Camera Test</title>
+</head>
+<body>
+    <video id="video" autoplay muted></video>
+    <script>
+        const video = document.getElementById('video');
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    alert("Error accessing the camera: " + error.message);
+                });
+        } else {
+            alert("Camera not supported on your device.");
+        }
+    </script>
+</body>
+</html>
